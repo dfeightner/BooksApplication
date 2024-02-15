@@ -1,40 +1,55 @@
 ﻿@model List<Book>
 
-<div class="row">
-    @foreach(var eachBook in Model)
-    {
-        
-        <div class="col-3 mb-5">
-            <div class="card col-12 m-2 p-2 border-2 shadow border-rounded text-center" style="min-height:100%">
-                <img class="card-img-top"/>
+<h1> Book List </h1>
 
-                <h3 class="card-title" text-center text-uppercase> @eachBook.BookTitle </h3>
+<div>
 
-                <div class="card-body">
-
-                    <p class="card-text text-center">
-
-                        @eachBook.Author
-                        <br />
-
-                        @eachBook.Description
-                        <br />
-                        <p>
-                            @eachBook.category.Name
-                        </p>
-
-                        @eachBook.Price
-                        
+    <div class="pt-2 pb-2">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th> </th>
+                </tr>
 
 
-                    </p>
 
-                </div>
-            </div>
+
+            </thead>
+            <tbody>
+                @foreach (var eachBook in Model)
+                {
+                    <tr>
+                        <td>@eachBook.BookTitle</td>
+                        <td>@eachBook.Author</td>
+                        <td>@eachBook.Description</td>
+                        <td>@eachBook.Price</td>
+
+                        <td>
+                            <a asp-controller="Book" asp-action="Edit" asp-route-id="@eachBook.BookId">Edit</a> |
+                            <a asp-controller="Book" asp-action="Delete" asp-route-id="@eachBook.BookId">Delete</a> |
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@eachBook.BookId">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+    <div>
+        <div class="col-6">
         </div>
+        <div class="col-6">
+            <a asp-controller="Book" asp-action="Create" class="btn btn-primary">Add a New Book</a>
+        </div>
+    </div>
 
 
-    }
+
 
 
 
